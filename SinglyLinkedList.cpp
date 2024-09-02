@@ -53,7 +53,27 @@ void insertAfterSpecifiedPosition(node* &head, int val,int target){
         {
             n->next = temp->next;
             temp->next = n;
-            break;
+            return;
+        }
+        temp=temp->next;
+    }
+    cout << "Target node not found" << endl;
+}
+
+void insertBeforeSpecifiedPosition(node* &head, int val,int target){
+
+if(head == NULL){
+        cout<<"Empty List";
+        return;
+    }
+    node* n = new node(val);
+    node* temp=head;
+    while(temp->next !=NULL){
+        if(temp->next->data == target)
+        {
+            n->next = temp->next;
+            temp->next = n;
+            return;
         }
         temp=temp->next;
     }
@@ -95,6 +115,11 @@ delete temp->next;
 temp->next = NULL;
 }
 
+
+void deleteAfterSpecifiedPosition(node* &head, int val,int target){
+
+}
+
 void displaylist(node* head){
     node* temp=head;
     while(temp != NULL)
@@ -110,7 +135,7 @@ int main()
 node* head=NULL;
 int key,value,target;
 while(true){
-cout << "Enter operation key (0 to display, 1 to insert at front, 2 to insert at tail, 3 to insert after target, 4 to delete at front, 5 to delete at end, -1 to exit): ";
+cout << "Enter operation key (0 to display, 1 to insert at front, 2 to insert at tail, 3 to insert after target, 4 to delete at front, 5 to delete at end,6 to insert before target, -1 to exit): ";
 cin>>key;
 if(key == -1)       break;
 if(key==0)      displaylist(head);
@@ -134,6 +159,13 @@ if(key==4){
 }
 if(key==5){
     deleteAtEnd(head);
+}
+if(key==6){
+    cout<<"value: "<<endl;
+    cin>>value;
+    cout<<"target: "<<endl;
+    cin>>target;
+    insertBeforeSpecifiedPosition(head,value,target);
 }
 }
 }
