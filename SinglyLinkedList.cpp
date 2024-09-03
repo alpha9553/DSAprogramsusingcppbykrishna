@@ -116,8 +116,32 @@ temp->next = NULL;
 }
 
 
-void deleteAfterSpecifiedPosition(node* &head, int val,int target){
-
+void deleteNode(node* &head,int target){
+if(head == NULL)
+    {
+        cout<<"Empty List";
+        return;
+    }
+if(head->data==target)
+    {
+        node* temp=head;
+        head=head->next;
+        delete temp;
+        return;
+    }
+    node* temp=head;
+while (temp->next != NULL)
+{
+    if(temp->next->data==target)
+    {
+        node* nodeToDelete = temp->next;
+        temp->next = temp->next->next;
+        delete nodeToDelete;
+        return;
+    }
+    temp = temp->next;
+}
+cout<<"Node not found"<<endl;
 }
 
 void displaylist(node* head){
@@ -166,6 +190,11 @@ if(key==6){
     cout<<"target: "<<endl;
     cin>>target;
     insertBeforeSpecifiedPosition(head,value,target);
+}
+if(key==7){
+    cout<<"target: "<<endl;
+    cin>>target;
+    deleteNode(head,target);
 }
 }
 }
